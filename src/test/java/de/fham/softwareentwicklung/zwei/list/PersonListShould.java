@@ -35,7 +35,7 @@ class PersonListShould {
         personList.add(person2);
 
         assertThat(personList.firstElement.person.name).isEqualTo("1");
-        assertThat(personList.firstElement.successor.person.name).isEqualTo("2");
+        assertThat(personList.firstElement.next.person.name).isEqualTo("2");
     }
 
     @Test
@@ -67,6 +67,6 @@ class PersonListShould {
         personList.remove(person);
 
         assertThat(personList.firstElement.person.name).isEqualTo("2");
-        assertThat(personList.firstElement.successor).isNull();
+        assertThat(personList.firstElement.next).isNull();
     }
 }

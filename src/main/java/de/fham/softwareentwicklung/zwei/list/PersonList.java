@@ -11,28 +11,28 @@ public class PersonList implements ListInterface {
             firstElement = new ListElement();
             firstElement.person = person;
         } else {
-            ListElement helper = firstElement;
-            while (helper.successor != null) {
-                helper = helper.successor;
+            ListElement tmp = firstElement;
+            while (tmp.next != null) {
+                tmp = tmp.next;
             }
-            helper.successor = new ListElement();
-            helper.successor.person = person;
+            tmp.next = new ListElement();
+            tmp.next.person = person;
         }
     }
 
     @Override
     public Person getPerson(int i) {
 
-        ListElement helper = firstElement;
+        ListElement tmp = firstElement;
         while (i > 0) {
-            if (helper.successor != null) {
-                helper = helper.successor;
+            if (tmp.next != null) {
+                tmp = tmp.next;
                 i--;
             } else {
                 return null;
             }
         }
-        return helper.person;
+        return tmp.person;
     }
 
     @Override
@@ -44,7 +44,7 @@ public class PersonList implements ListInterface {
         // If head node itself holds
         // the key to be deleted
         if (temp != null && temp.person.name.equals(person.name) && temp.person.birthdate.equals(person.birthdate)) {
-            firstElement = temp.successor; // Changed head
+            firstElement = temp.next; // Changed head
         }
 
         // Else Search for the key to be deleted,
@@ -53,7 +53,7 @@ public class PersonList implements ListInterface {
         else {
             while (temp != null && !temp.person.name.equals(person.name) && !temp.person.birthdate.equals(person.birthdate)) {
                 prev = temp;
-                temp = temp.successor;
+                temp = temp.next;
             }
 
             // If key was not present in linked list
@@ -62,7 +62,7 @@ public class PersonList implements ListInterface {
             }
 
             // Unlink the node from linked list
-            prev.successor = temp.successor;
+            prev.next = temp.next;
         }
     }
 }
